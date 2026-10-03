@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#030a1c">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cuisine · Capital Food 62</title>
+<style>
+:root{--bg:#030a1c;--card:#071a45;--line:#16337a;--blue:#1e6bff;--sky:#4d9bff;--txt:#f0f6ff;--mut:#9db3dc;--ok:#22c55e;--warn:#ffc21a;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--txt);font:17px/1.4 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;min-height:100dvh}
+button{font:inherit;color:inherit;cursor:pointer;border:0}
+#gate{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:9;text-align:center;padding:20px}
+#gate h1{font-size:28px;margin-bottom:18px}
+#gate input{padding:14px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:inherit;text-align:center;width:230px;margin-bottom:16px}
+.big{padding:16px 44px;border-radius:999px;background:var(--blue);font-weight:800;font-size:21px;box-shadow:0 0 30px rgba(31,107,255,.6)}
+header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(3,10,28,.96);z-index:5;flex-wrap:wrap}
+header h1{font-size:20px;flex:1;min-width:160px}
+.pill{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:15px}
+.pill.on{background:var(--blue);border-color:var(--blue)}
+main{padding:14px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));align-items:start}
+.t{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px}
+.t.nouvelle{border-color:var(--warn);animation:bl 1.2s infinite}
+.t.preparation{border-color:var(--blue)}.t.prete{border-color:var(--ok)}.t.annulee{opacity:.55}
+@keyframes bl{50%{box-shadow:0 0 28px rgba(255,194,26,.6)}}
+.h{display:flex;justify-content:space-between;align-items:baseline}.h b{font-size:36px}.h span{color:var(--mut);font-size:14px}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--blue);font-size:13px;font-weight:700;margin:6px 6px 6px 0}
+.tag.d{background:#7b3bff}.tag.h2{background:#16337a}
+.ln{padding:7px 0;border-bottom:1px solid var(--line)}.ln b{color:var(--sky)}.ln small{display:block;color:var(--warn);font-size:14px}
+.meta{color:var(--mut);font-size:15px;margin-top:9px}.meta a{color:var(--sky)}
+.acts{display:flex;gap:8px;margin-top:12px}.acts button{flex:1;padding:14px;border-radius:14px;font-weight:800;background:var(--blue)}
+.acts .ok{background:var(--ok);color:#012}.acts .g{background:#16337a;flex:0 0 auto}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:60px 0}
+@media print{body{background:#fff;color:#000}header,.acts{display:none}.t{border:1px solid #000;color:#000;background:#fff;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="gate"><div><h1>Cuisine · Capital Food 62</h1><input id="code" type="password" inputmode="numeric" placeholder="Code cuisine" autocomplete="off"><br><button class="big" id="enter">Entrer</button><p id="gerr" style="color:#ff6b81;margin-top:12px"></p></div></div>
+<header><h1>🍳 Commandes · Capital Food 62</h1><button class="pill on" id="fA">En cours</button><button class="pill" id="fD">Terminées</button><span class="pill" id="st">…</span></header>
+<main id="list"></main>
+<script>
+const $ = s => document.querySelector(s), API = '/api/cuisine';
+let CODE = localStorage.getItem('cf_code') || '', orders = [], view = 'act', known = new Set(), first = true, ctx = null, alarm = null;
+const H = () => ({ 'content-type': 'application/json', 'x-code': CODE });
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function beep() { try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); [0, .28, .56].forEach(t => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = 880; o.connect(g); g.connect(ctx.destination); g.gain.setValueAtTime(.35, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + t + .22); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .24); }); } catch (e) {} }
+function sync() { const has = orders.some(o => o.statut === 'nouvelle'); if (has && !alarm) { beep(); alarm = setInterval(beep, 6000); } if (!has && alarm) { clearInterval(alarm); alarm = null; } }
+async function load() {
+  try { const r = await fetch(API, { headers: H(), cache: 'no-store' }); if (r.status === 401) { localStorage.removeItem('cf_code'); location.reload(); return; } if (!r.ok) throw 0; orders = await r.json(); $('#st').textContent = '🟢 en ligne'; }
+  catch (e) { $('#st').textContent = '🔴 hors ligne'; return; }
+  orders.sort((a, b) => b.at - a.at); orders.forEach(o => known.add(o.id)); first = false; draw(); sync();
+}
+const NEXT = { nouvelle: ['preparation', 'Accepter'], preparation: ['prete', 'Prête'], prete: ['terminee', 'Terminer'] };
+function draw() {
+  const act = o => o.statut !== 'terminee' && o.statut !== 'annulee';
+  const l = orders.filter(o => view === 'act' ? act(o) : !act(o)).sort((a, b) => view === 'act' ? a.at - b.at : b.at - a.at);
+  $('#list').innerHTML = l.length ? l.map(o => {
+    const t = new Date(o.at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }), nx = NEXT[o.statut], liv = o.mode === 'livraison';
+    return `<div class="t ${o.statut}"><div class="h"><b>#${esc(o.num)}</b><span>reçue à ${t}</span></div>
+    <span class="tag ${liv ? 'd' : ''}">${liv ? 'LIVRAISON' : 'À EMPORTER'}</span><span class="tag h2">${o.heure === 'asap' ? 'Dès que possible' : esc(o.heure.replace(':', 'h'))}</span>
+    ${o.lignes.map(i => `<div class="ln"><b>${i.q}×</b> ${esc(i.n)}${i.d ? `<small>${esc(i.d)}</small>` : ''}</div>`).join('')}
+    ${o.note ? `<div class="meta">📝 ${esc(o.note)}</div>` : ''}
+    <div class="meta">👤 ${esc(o.nom)} · <a href="tel:${esc(o.tel)}">${esc(o.tel)}</a>${liv ? `<br>📍 ${esc(o.adresse)} ${esc(o.cp)}` : ''}<br>💶 ${esc(o.paiement)} · <b style="color:var(--txt)">${esc(o.total)}</b></div>
+    <div class="acts">${o.statut === 'nouvelle' ? `<button class="g" data-id="${esc(o.id)}" data-s="annulee">Annuler</button>` : ''}${nx ? `<button class="${nx[0] === 'prete' ? 'ok' : ''}" data-id="${esc(o.id)}" data-s="${nx[0]}">${nx[1]}</button>` : ''}<button class="g" onclick="window.print()">🖨</button></div></div>`;
+  }).join('') : '<div class="empty">Aucune commande pour le moment.</div>';
+}
+$('#list').onclick = async e => {
+  const b = e.target.closest('[data-s]'); if (!b) return;
+  if (b.dataset.s === 'annulee' && !confirm('Annuler cette commande ?')) return;
+  b.disabled = true;
+  try { await fetch('/api/cuisine-statut', { method: 'POST', headers: H(), body: JSON.stringify({ id: b.dataset.id, statut: b.dataset.s }) }); } catch (x) {}
+  load();
+};
+$('#fA').onclick = () => { view = 'act'; $('#fA').classList.add('on'); $('#fD').classList.remove('on'); draw(); };
+$('#fD').onclick = () => { view = 'done'; $('#fD').classList.add('on'); $('#fA').classList.remove('on'); draw(); };
+async function go() {
+  CODE = $('#code').value.trim() || CODE;
+  try { const r = await fetch(API, { headers: H() }); if (r.status === 401) { $('#gerr').textContent = 'Code incorrect.'; return; } if (r.ok) localStorage.setItem('cf_code', CODE); } catch (e) {}
+  $('#gate').remove(); beep(); try { navigator.wakeLock && navigator.wakeLock.request('screen'); } catch (e) {}
+  load(); setInterval(load, 4000);
+}
+$('#enter').onclick = go; if (CODE) $('#code').value = CODE;
+</script>
+</body>
+</html>
