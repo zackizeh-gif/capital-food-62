@@ -1,0 +1,10 @@
+{
+  "name": "pub-digitboost-nfc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cues:30": "node render/render.mjs --v=30 --cues=build/cues30.json",
+    "cues:15": "node render/render.mjs --v=15 --cues=build/cues15.json"
+  },
+  "devDependencies": { "playwright": "1.56.1" }
+}
