@@ -7,19 +7,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cuisine · Capital Food 62</title>
 <style>
-:root{--bg:#030a1c;--card:#071a45;--line:#16337a;--blue:#1e6bff;--sky:#4d9bff;--txt:#f0f6ff;--mut:#9db3dc;--ok:#22c55e;--warn:#ffc21a;color-scheme:dark}
+:root{--bg:#030a1c;--card:#071a45;--card2:#0b2258;--line:#16337a;--blue:#1e6bff;--sky:#4d9bff;--txt:#f0f6ff;--mut:#9db3dc;--ok:#22c55e;--warn:#ffc21a;--bad:#ef4444;color-scheme:dark}
 *{box-sizing:border-box;margin:0}
 body{background:var(--bg);color:var(--txt);font:17px/1.4 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;min-height:100dvh}
-button{font:inherit;color:inherit;cursor:pointer;border:0}
-#gate{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:9;text-align:center;padding:20px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+[hidden]{display:none!important}
+#gate{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:20;text-align:center;padding:20px}
 #gate h1{font-size:28px;margin-bottom:18px}
 #gate input{padding:14px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:inherit;text-align:center;width:230px;margin-bottom:16px}
 .big{padding:16px 44px;border-radius:999px;background:var(--blue);font-weight:800;font-size:21px;box-shadow:0 0 30px rgba(31,107,255,.6)}
-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(3,10,28,.96);z-index:5;flex-wrap:wrap}
-header h1{font-size:20px;flex:1;min-width:160px}
-.pill{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:15px}
+
+/* --- en-tête --- */
+header{padding:10px 16px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(3,10,28,.97);z-index:10}
+.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.top h1{font-size:20px;flex:1;min-width:120px;white-space:nowrap}
+.nav{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+.nav button{padding:9px 16px;border-radius:999px;font-weight:800;font-size:16px;color:var(--mut);display:flex;align-items:center;gap:6px}
+.nav button.on{background:var(--blue);color:#fff}
+.nb{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--bad);color:#fff;font:800 13px/1 system-ui,sans-serif}
+.nb.w{background:var(--warn);color:#1a1200}
+.pill{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:15px;font-weight:600}
 .pill.on{background:var(--blue);border-color:var(--blue)}
-main{padding:14px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));align-items:start}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tg{display:flex;align-items:center;gap:12px;padding:7px 8px 7px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:700;font-size:15px;min-height:44px}
+.tg .k{flex:0 0 auto;width:46px;height:28px;border-radius:999px;background:#3a4763;position:relative;transition:background .2s}
+.tg .k::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.tg[aria-pressed="true"] .k{background:var(--ok)}
+.tg[aria-pressed="true"] .k::after{transform:translateX(18px)}
+#bOnline[aria-pressed="true"]{border-color:rgba(34,197,94,.6)}
+#bOnline[aria-pressed="false"]{background:rgba(239,68,68,.2);border-color:var(--bad)}
+#bOnline[aria-pressed="false"] .k{background:var(--bad)}
+#bOnline b{font-weight:900}
+#bOnline[aria-pressed="true"] b{color:#86efac}
+#bOnline[aria-pressed="false"] b{color:#fecaca}
+.off{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;background:var(--bad);color:#fff;font-weight:800}
+.off button{padding:10px 20px;border-radius:999px;background:#fff;color:#991b1b;font-weight:900}
+
+/* --- commandes --- */
+.sub{display:flex;gap:8px;padding:12px 16px 0}
+#list{padding:14px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));align-items:start}
 .t{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px}
 .t.nouvelle{border-color:var(--warn);animation:bl 1.2s infinite}
 .t.preparation{border-color:var(--blue)}.t.prete{border-color:var(--ok)}.t.annulee{opacity:.55}
@@ -32,24 +58,237 @@ main{padding:14px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,m
 .acts{display:flex;gap:8px;margin-top:12px}.acts button{flex:1;padding:14px;border-radius:14px;font-weight:800;background:var(--blue)}
 .acts .ok{background:var(--ok);color:#012}.acts .g{background:#16337a;flex:0 0 auto}
 .empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:60px 0}
-@media print{body{background:#fff;color:#000}header,.acts{display:none}.t{border:1px solid #000;color:#000;background:#fff;break-inside:avoid}}
+
+/* --- carte & rupture : outils --- */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px 16px 0}
+.search{flex:1;min-width:200px;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:inherit}
+.help{color:var(--mut);font-size:14px;padding:10px 18px 0;max-width:900px}
+.seg{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{padding:9px 16px;border-radius:999px;font-weight:800;color:var(--mut);display:flex;gap:6px;align-items:center}
+.seg button.on{background:var(--blue);color:#fff}
+.ghost{padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:700;font-size:15px}
+.cats{padding:14px 16px 120px;display:grid;gap:14px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 16px 12px}
+.cat h2{font-size:19px;padding:12px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.cat h3{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;padding:16px 0 4px}
+.cat.cout{border-color:var(--bad)}
+
+/* --- carte (prix) --- */
+.row{display:flex;align-items:center;gap:10px 14px;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.row-t{flex:1;min-width:170px}
+.row-t b{font-size:17px}
+.row-t small{display:block;color:var(--mut);font-size:13px;line-height:1.35}
+.orig{display:block;font-style:normal;color:var(--warn);font-size:13px;font-weight:700;margin-top:2px}
+.row-p{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pz{display:flex;align-items:center;gap:6px;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:2px 12px}
+.pz span{color:var(--mut);font-size:13px;font-weight:700}
+.pz input{width:66px;background:transparent;border:0;color:var(--txt);font:800 19px/1 system-ui,sans-serif;text-align:right;padding:9px 0;outline:0}
+.pz b{color:var(--mut);font-weight:700}
+.pz:focus-within{border-color:var(--sky)}
+.row.mod .pz{border-color:rgba(255,194,26,.7)}
+.row.dirty .pz{border-color:var(--sky);box-shadow:0 0 0 3px rgba(77,155,255,.3)}
+.pz.bad{border-color:var(--bad)!important;box-shadow:0 0 0 3px rgba(239,68,68,.3)!important}
+.rst{padding:10px 13px;border-radius:12px;background:var(--card2);border:1px solid var(--line);font-size:15px;font-weight:700}
+.savebar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:8px;align-items:center;background:#0b1f52;border:2px solid var(--sky);border-radius:999px;padding:7px 7px 7px 20px;box-shadow:0 10px 40px rgba(0,0,0,.7);z-index:9;max-width:calc(100vw - 24px)}
+.savebar span{font-weight:800;white-space:nowrap}
+.savebar button{padding:12px 18px;border-radius:999px;font-weight:800;white-space:nowrap}
+#saveGo{background:var(--ok);color:#012}
+#saveCancel{background:#16337a}
+
+/* --- rupture --- */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;padding:2px 0 6px}
+.rb{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;text-align:left;padding:11px 14px;border-radius:14px;background:var(--bg);border:2px solid var(--line);min-height:66px;transition:background .15s,border-color .15s}
+.rb b{font-size:16px;line-height:1.2}
+.rb span{font-size:12px;font-weight:800;letter-spacing:.04em;color:#86efac}
+.rb.out{background:rgba(239,68,68,.18);border-color:var(--bad)}
+.rb.out b{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.5)}
+.rb.out span{color:#fca5a5}
+.rb:disabled{cursor:default;opacity:.75}
+.catbtn{padding:9px 14px;border-radius:999px;font-size:14px;font-weight:800;background:var(--bg);border:1px solid var(--line)}
+.catbtn.out{background:var(--bad);border-color:var(--bad);color:#fff}
+
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translate(-50%,30px);opacity:0;pointer-events:none;z-index:30;padding:12px 20px;border-radius:999px;background:#0b1f52;border:1px solid var(--sky);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.6);transition:opacity .2s,transform .2s;max-width:calc(100vw - 24px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:600px){header{position:static}.top h1{font-size:18px}.nav button{padding:8px 12px;font-size:15px}.tg{font-size:14px;padding-left:12px}
+  .savebar{left:10px;right:10px;transform:none;max-width:none;padding-left:16px}.savebar span{flex:1;font-size:15px;white-space:normal}.savebar button{padding:11px 14px}}
+@media print{body{background:#fff;color:#000}header,.off,.acts,.sub,#vCarte,#vRupt,.toast{display:none!important}.t{border:1px solid #000;color:#000;background:#fff;break-inside:avoid}}
 </style>
 </head>
 <body>
 <div id="gate"><div><h1>Cuisine · Capital Food 62</h1><input id="code" type="password" inputmode="numeric" placeholder="Code cuisine" autocomplete="off"><br><button class="big" id="enter">Entrer</button><p id="gerr" style="color:#ff6b81;margin-top:12px"></p></div></div>
-<header><h1>🍳 Commandes · Capital Food 62</h1><button class="pill on" id="fA">En cours</button><button class="pill" id="fD">Terminées</button><span class="pill" id="st">…</span></header>
-<main id="list"></main>
+
+<header>
+  <div class="top">
+    <h1>🍳 Capital Food 62</h1>
+    <nav class="nav" aria-label="Espace cuisine">
+      <button class="on" data-page="cmd">Commandes <span class="nb w" id="nCmd" hidden></span></button>
+      <button data-page="carte">Carte <span class="nb w" id="nCarte" hidden>•</span></button>
+      <button data-page="rupt">Rupture <span class="nb" id="nRupt" hidden></span></button>
+    </nav>
+    <span class="pill" id="st">…</span>
+  </div>
+  <div class="ctl">
+    <button class="tg" id="bOnline" aria-pressed="true"><span>🛒 Commandes en ligne : <b class="v">Ouvertes</b></span><span class="k"></span></button>
+    <button class="tg" id="bNotif" aria-pressed="false"><span class="l">🔔 Notifications</span><span class="k"></span></button>
+    <button class="tg" id="bSon" aria-pressed="true"><span class="l">🔊 Son</span><span class="k"></span></button>
+  </div>
+</header>
+<div class="off" id="offBanner" hidden><span>⛔ Commandes en ligne fermées : les clients voient le menu mais ne peuvent plus commander sur le site.</span><button id="reopen">Rouvrir les commandes</button></div>
+
+<section id="vCmd">
+  <div class="sub"><button class="pill on" id="fA">En cours</button><button class="pill" id="fD">Terminées</button></div>
+  <main id="list"></main>
+</section>
+
+<section id="vCarte" hidden>
+  <div class="tools"><input class="search" id="qCarte" type="search" placeholder="Rechercher un plat…" autocomplete="off"></div>
+  <p class="help">Changez un prix puis appuyez sur <b>Enregistrer</b> : il est mis à jour tout de suite sur le site. ↺ remet le prix d'origine.</p>
+  <div class="cats" id="carte"></div>
+  <div class="savebar" id="saveBar" hidden><span id="saveN"></span><button id="saveCancel">Annuler</button><button id="saveGo">Enregistrer</button></div>
+</section>
+
+<section id="vRupt" hidden>
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Type de rupture"><button class="on" data-r="plats">Plats</button><button data-r="ingr">Ingrédients</button></div>
+    <input class="search" id="qRupt" type="search" placeholder="Rechercher…" autocomplete="off">
+    <button class="ghost" id="ruptReset" hidden>Tout remettre en stock</button>
+  </div>
+  <p class="help" id="ruptHelp"></p>
+  <div class="cats" id="rupt"></div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
 const $ = s => document.querySelector(s), API = '/api/cuisine';
 let CODE = localStorage.getItem('cf_code') || '', orders = [], view = 'act', known = new Set(), first = true, ctx = null, alarm = null;
+let MENU = null, ROWS = [], REG = null, page = 'cmd', ruptTab = 'plats', EDIT = {}, wseq = 0, swReg = null;
+const PREF = { son: true, notif: false };
+try { Object.assign(PREF, JSON.parse(localStorage.getItem('cf_prefs') || '{}')); } catch (e) {}
+const savePref = () => { try { localStorage.setItem('cf_prefs', JSON.stringify(PREF)); } catch (e) {} };
 const H = () => ({ 'content-type': 'application/json', 'x-code': CODE });
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-function beep() { try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); [0, .28, .56].forEach(t => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = 880; o.connect(g); g.connect(ctx.destination); g.gain.setValueAtTime(.35, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + t + .22); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .24); }); } catch (e) {} }
-function sync() { const has = orders.some(o => o.statut === 'nouvelle'); if (has && !alarm) { beep(); alarm = setInterval(beep, 6000); } if (!has && alarm) { clearInterval(alarm); alarm = null; } }
+const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const fr = v => (+v).toFixed(2).replace('.', ',');
+const clone = o => JSON.parse(JSON.stringify(o));
+const famille = g => /^boisson/.test(g) ? 'boisson' : /^viande/.test(g) ? 'viande' : g;
+let tt;
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 2200); }
+
+/* ================= son & notifications ================= */
+function beep(force) {
+  if (!PREF.son && !force) return;
+  try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); [0, .28, .56].forEach(t => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = 880; o.connect(g); g.connect(ctx.destination); g.gain.setValueAtTime(.35, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + t + .22); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .24); }); } catch (e) {}
+}
+function sync() {
+  const n = orders.filter(o => o.statut === 'nouvelle').length, want = n > 0 && PREF.son;
+  if (want && !alarm) { beep(); alarm = setInterval(beep, 6000); }
+  if (!want && alarm) { clearInterval(alarm); alarm = null; }
+  document.title = n ? `(${n}) 🔔 Nouvelle commande · Cuisine` : 'Cuisine · Capital Food 62';
+  $('#nCmd').textContent = n; $('#nCmd').hidden = !n;
+}
+const notifOk = () => PREF.notif && 'Notification' in window && Notification.permission === 'granted';
+async function showNote(title, body, tag) {
+  if (!notifOk()) return;
+  const opts = { body, tag, renotify: true, requireInteraction: true, silent: !PREF.son };
+  try { if (swReg) { await swReg.showNotification(title, opts); return; } } catch (e) {}
+  try { const n = new Notification(title, opts); n.onclick = () => { window.focus(); n.close(); }; } catch (e) {}
+}
+function notifier(o) {
+  const nb = (o.lignes || []).reduce((s, l) => s + (+l.q || 1), 0);
+  showNote(`🔔 Nouvelle commande #${o.num}`, `${o.mode === 'livraison' ? 'Livraison' : 'À emporter'} · ${nb} article${nb > 1 ? 's' : ''} · ${o.total || ''}\n${o.nom || ''}`, 'cmd-' + o.id);
+}
+async function swInit() {
+  if (!('serviceWorker' in navigator)) return;
+  try { swReg = await navigator.serviceWorker.register('/cuisine-sw.js', { scope: '/cuisine' }); } catch (e) { swReg = null; }
+}
+$('#bSon').onclick = () => {
+  PREF.son = !PREF.son; savePref(); drawCtl(); sync();
+  if (PREF.son) beep(true);
+  toast(PREF.son ? '🔊 Son activé' : '🔇 Son coupé');
+};
+$('#bNotif').onclick = async () => {
+  if (PREF.notif) { PREF.notif = false; savePref(); drawCtl(); toast('🔕 Notifications désactivées'); return; }
+  if (!('Notification' in window)) { alert("Ce navigateur ne gère pas les notifications. Gardez cette page ouverte : le son et le clignotement vous préviennent des nouvelles commandes."); return; }
+  let p = Notification.permission;
+  if (p === 'default') { try { p = await Notification.requestPermission(); } catch (e) {} }
+  if (p !== 'granted') { alert("Les notifications sont bloquées pour ce site.\nAutorisez-les dans les réglages du navigateur (icône 🔒 à côté de l'adresse), puis réessayez."); drawCtl(); return; }
+  PREF.notif = true; savePref(); drawCtl();
+  showNote('🔔 Notifications activées', 'Vous serez prévenu à chaque nouvelle commande.', 'test');
+  toast('🔔 Notifications activées');
+};
+
+/* ================= commandes en ligne ouvertes / fermées ================= */
+async function setOuvert(v) {
+  if (!REG) { toast('Connexion en cours… réessayez'); return; }
+  if (!v && !confirm('Fermer les commandes en ligne ?\n\nLes clients verront toujours le menu, mais ne pourront plus commander sur le site.')) return;
+  const prev = clone(REG); REG.ouvert = v; drawCtl();
+  if (await ecrire({ ouvert: v }, prev)) toast(v ? '✅ Commandes en ligne rouvertes' : '⛔ Commandes en ligne fermées');
+}
+$('#bOnline').onclick = () => setOuvert(!(REG && REG.ouvert !== false));
+$('#reopen').onclick = () => setOuvert(true);
+
+async function ecrire(body, prev) {
+  wseq++;
+  try {
+    const r = await fetch('/api/cuisine-reglages', { method: 'POST', headers: H(), body: JSON.stringify(body) });
+    if (r.status === 401) { localStorage.removeItem('cf_code'); location.reload(); return null; }
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.ok) throw new Error(d.error || 'erreur');
+    REG = d.reglages; return REG;
+  } catch (e) {
+    if (prev) REG = prev;
+    alert("L'enregistrement a échoué. Vérifiez la connexion et réessayez.");
+    return null;
+  } finally { wseq++; drawCtl(); if (page === 'rupt') drawRupt(); }
+}
+
+function drawCtl() {
+  const ouv = !REG || REG.ouvert !== false;
+  $('#bOnline').setAttribute('aria-pressed', ouv); $('#bOnline .v').textContent = ouv ? 'Ouvertes' : 'Fermées';
+  $('#offBanner').hidden = ouv;
+  $('#bSon').setAttribute('aria-pressed', PREF.son); $('#bSon .l').textContent = PREF.son ? '🔊 Son' : '🔇 Son coupé';
+  $('#bNotif').setAttribute('aria-pressed', notifOk()); $('#bNotif .l').textContent = notifOk() ? '🔔 Notifications' : '🔕 Notifications';
+  const ru = REG ? REG.rupture : null, nR = ru ? ru.plats.length + ru.cats.length + ru.choix.length : 0;
+  $('#nRupt').textContent = nR; $('#nRupt').hidden = !nR;
+  $('#nCarte').hidden = !Object.keys(EDIT).length;
+}
+
+/* ================= onglets ================= */
+document.querySelectorAll('[data-page]').forEach(b => b.onclick = () => {
+  page = b.dataset.page;
+  document.querySelectorAll('[data-page]').forEach(x => x.classList.toggle('on', x === b));
+  $('#vCmd').hidden = page !== 'cmd'; $('#vCarte').hidden = page !== 'carte'; $('#vRupt').hidden = page !== 'rupt';
+  if (page === 'carte') drawCarte();
+  if (page === 'rupt') drawRupt();
+  scrollTo(0, 0);
+});
+const noMenu = () => `<p class="empty">Le menu n'a pas pu se charger. <button class="ghost" onclick="loadMenu()">Réessayer</button></p>`;
+
+/* ================= commandes ================= */
 async function load() {
-  try { const r = await fetch(API, { headers: H(), cache: 'no-store' }); if (r.status === 401) { localStorage.removeItem('cf_code'); location.reload(); return; } if (!r.ok) throw 0; orders = await r.json(); $('#st').textContent = '🟢 en ligne'; }
-  catch (e) { $('#st').textContent = '🔴 hors ligne'; return; }
-  orders.sort((a, b) => b.at - a.at); orders.forEach(o => known.add(o.id)); first = false; draw(); sync();
+  const seq = wseq;
+  let d;
+  try {
+    const r = await fetch(API + '?reglages=1', { headers: H(), cache: 'no-store' });
+    if (r.status === 401) { localStorage.removeItem('cf_code'); location.reload(); return; }
+    if (!r.ok) throw 0;
+    d = await r.json(); $('#st').textContent = '🟢 en ligne';
+  } catch (e) { $('#st').textContent = '🔴 hors ligne'; return; }
+  const list = Array.isArray(d) ? d : (d.commandes || []);
+  const fresh = first ? [] : list.filter(o => !known.has(o.id) && o.statut === 'nouvelle');
+  orders = list.sort((a, b) => b.at - a.at); orders.forEach(o => known.add(o.id)); first = false;
+  fresh.forEach(notifier);
+  if (d.reglages && seq === wseq) {
+    const avant = REG, ch = JSON.stringify(d.reglages) !== JSON.stringify(REG);
+    REG = d.reglages;
+    if (ch) {
+      drawCtl();
+      if (page === 'rupt') drawRupt();
+      if (page === 'carte' && (!avant || avant.prixMaj !== REG.prixMaj) && !Object.keys(EDIT).length && !(document.activeElement && document.activeElement.closest && document.activeElement.closest('.pz'))) drawCarte();
+    }
+  }
+  draw(); sync();
 }
 const NEXT = { nouvelle: ['preparation', 'Accepter'], preparation: ['prete', 'Prête'], prete: ['terminee', 'Terminer'] };
 function draw() {
@@ -58,7 +297,7 @@ function draw() {
   $('#list').innerHTML = l.length ? l.map(o => {
     const t = new Date(o.at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }), nx = NEXT[o.statut], liv = o.mode === 'livraison';
     return `<div class="t ${o.statut}"><div class="h"><b>#${esc(o.num)}</b><span>reçue à ${t}</span></div>
-    <span class="tag ${liv ? 'd' : ''}">${liv ? 'LIVRAISON' : 'À EMPORTER'}</span><span class="tag h2">${o.heure === 'asap' ? 'Dès que possible' : esc(o.heure.replace(':', 'h'))}</span>
+    <span class="tag ${liv ? 'd' : ''}">${liv ? 'LIVRAISON' : 'À EMPORTER'}</span><span class="tag h2">${o.heure === 'asap' ? 'Dès que possible' : esc(String(o.heure || '').replace(':', 'h'))}</span>
     ${o.lignes.map(i => `<div class="ln"><b>${i.q}×</b> ${esc(i.n)}${i.d ? `<small>${esc(i.d)}</small>` : ''}</div>`).join('')}
     ${o.note ? `<div class="meta">📝 ${esc(o.note)}</div>` : ''}
     <div class="meta">👤 ${esc(o.nom)} · <a href="tel:${esc(o.tel)}">${esc(o.tel)}</a>${liv ? `<br>📍 ${esc(o.adresse)} ${esc(o.cp)}` : ''}<br>💶 ${esc(o.paiement)} · <b style="color:var(--txt)">${esc(o.total)}</b></div>
@@ -74,13 +313,176 @@ $('#list').onclick = async e => {
 };
 $('#fA').onclick = () => { view = 'act'; $('#fA').classList.add('on'); $('#fD').classList.remove('on'); draw(); };
 $('#fD').onclick = () => { view = 'done'; $('#fD').classList.add('on'); $('#fA').classList.remove('on'); draw(); };
+
+/* ================= menu ================= */
+async function loadMenu() {
+  try { const r = await fetch('/menu.json', { cache: 'no-cache' }); if (!r.ok) throw 0; MENU = await r.json(); buildRows(); }
+  catch (e) { MENU = null; }
+  if (page === 'carte') drawCarte();
+  if (page === 'rupt') drawRupt();
+}
+function buildRows() {
+  ROWS = [];
+  MENU.categories.forEach(c => {
+    c.items.forEach(it => {
+      if (typeof it.p !== 'number' && !Array.isArray(it.p)) return;
+      ROWS.push({ k: it.id, cat: c.id, n: it.n, d: it.d || '', base: Array.isArray(it.p) ? it.p.map(v => v.p) : it.p, vl: Array.isArray(it.p) ? it.p.map(v => v.l) : null });
+    });
+    (c.extras || []).forEach(e => ROWS.push({ k: `x:${c.id}:${e.id}`, cat: c.id, n: e.n, d: '', base: e.p, vl: null, x: true }));
+  });
+  Object.entries(MENU.config.options || {}).forEach(([gid, g]) => { if (g.prix) ROWS.push({ k: 'o:' + gid, cat: '_opt', n: g.titre, d: 'Option payante proposée avec certains plats', base: g.prix, vl: null }); });
+}
+
+/* ================= carte : prix ================= */
+const parse = s => { s = String(s).trim().replace(',', '.').replace(/[€\s]/g, ''); if (!/^\d{1,4}(\.\d{1,2})?$/.test(s)) return null; const v = +s; return v <= 1000 ? Math.round(v * 100) / 100 : null; };
+const same = (a, b) => Array.isArray(a) ? Array.isArray(b) && a.length === b.length && a.every((v, i) => Math.round(v * 100) === Math.round(b[i] * 100)) : Math.round(a * 100) === Math.round(b * 100);
+function curOf(r) {
+  const o = REG && REG.prix ? REG.prix[r.k] : undefined;
+  if (r.vl) return Array.isArray(o) && o.length === r.base.length ? o : r.base;
+  return typeof o === 'number' ? o : r.base;
+}
+const fmtBase = r => r.vl ? r.vl.map((l, i) => `${l} ${fr(r.base[i])} €`).join(' · ') : fr(r.base) + ' €';
+function rowHTML(r) {
+  const cur = curOf(r), mod = !same(cur, r.base), raw = EDIT[r.k], vals = raw || (r.vl ? cur.map(fr) : [fr(cur)]);
+  return `<div class="row${mod ? ' mod' : ''}${raw ? ' dirty' : ''}" data-k="${esc(r.k)}">
+    <div class="row-t"><b>${esc(r.n)}</b>${r.d ? `<small>${esc(r.d)}</small>` : ''}${mod ? `<em class="orig">Prix d'origine : ${esc(fmtBase(r))}</em>` : ''}</div>
+    <div class="row-p">${vals.map((v, i) => `<label class="pz${raw && parse(v) === null ? ' bad' : ''}">${r.vl ? `<span>${esc(r.vl[i])}</span>` : ''}<input inputmode="decimal" autocomplete="off" enterkeyhint="done" data-i="${i}" value="${esc(v)}" aria-label="Prix ${esc(r.n)}${r.vl ? ' ' + esc(r.vl[i]) : ''}"><b>€</b></label>`).join('')}<button class="rst" data-rst title="Revenir au prix d'origine"${mod || raw ? '' : ' hidden'}>↺</button></div></div>`;
+}
+function drawCarte() {
+  if (!MENU) { $('#carte').innerHTML = noMenu(); return; }
+  const q = norm($('#qCarte').value.trim());
+  const cats = [...MENU.categories.map(c => ({ id: c.id, name: c.name })), { id: '_opt', name: 'Options payantes' }];
+  let html = '';
+  cats.forEach(c => {
+    const rows = ROWS.filter(r => r.cat === c.id && (!q || norm(r.n + ' ' + r.d + ' ' + c.name).includes(q)));
+    if (!rows.length) return;
+    const items = rows.filter(r => !r.x), ex = rows.filter(r => r.x);
+    html += `<div class="cat"><h2>${esc(c.name)}</h2>${items.map(rowHTML).join('')}${ex.length ? `<h3>Suppléments</h3>${ex.map(rowHTML).join('')}` : ''}</div>`;
+  });
+  $('#carte').innerHTML = html || '<p class="empty">Aucun plat ne correspond.</p>';
+  drawSave();
+}
+function rowState(el) {
+  const r = ROWS.find(x => x.k === el.dataset.k), raw = [...el.querySelectorAll('input')].map(i => i.value);
+  const p = raw.map(parse), ok = p.every(v => v !== null), cur = curOf(r);
+  if (ok && same(r.vl ? p : p[0], cur)) delete EDIT[r.k]; else EDIT[r.k] = raw;
+  el.querySelectorAll('.pz').forEach((z, i) => z.classList.toggle('bad', p[i] === null));
+  el.classList.toggle('dirty', !!EDIT[r.k]);
+  el.querySelector('[data-rst]').hidden = !EDIT[r.k] && same(cur, r.base);
+  drawSave();
+}
+function drawSave() {
+  const ks = Object.keys(EDIT), bad = ks.filter(k => EDIT[k].some(v => parse(v) === null)).length;
+  $('#saveBar').hidden = !ks.length || page !== 'carte';
+  $('#saveN').textContent = bad ? '⚠️ Prix invalide' : `${ks.length} prix modifié${ks.length > 1 ? 's' : ''}`;
+  $('#saveGo').disabled = !!bad; $('#saveGo').style.opacity = bad ? .5 : 1;
+  $('#nCarte').hidden = !ks.length;
+}
+$('#carte').addEventListener('input', e => { const row = e.target.closest('.row'); if (row) rowState(row); });
+$('#carte').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('.pz input')) e.target.blur(); });
+$('#carte').addEventListener('focusout', e => {
+  if (!e.target.matches('.pz input')) return;
+  const v = parse(e.target.value); if (v !== null) { e.target.value = fr(v); rowState(e.target.closest('.row')); }
+});
+$('#carte').addEventListener('click', e => {
+  const b = e.target.closest('[data-rst]'); if (!b) return;
+  const el = b.closest('.row'), r = ROWS.find(x => x.k === el.dataset.k);
+  (r.vl ? r.base : [r.base]).forEach((v, i) => el.querySelectorAll('input')[i].value = fr(v));
+  rowState(el);
+});
+$('#qCarte').addEventListener('input', drawCarte);
+$('#saveCancel').onclick = () => { EDIT = {}; drawCarte(); };
+$('#saveGo').onclick = async () => {
+  if (!REG) { toast('Connexion en cours… réessayez'); return; }
+  const prix = {};
+  for (const k of Object.keys(EDIT)) {
+    const r = ROWS.find(x => x.k === k), p = EDIT[k].map(parse);
+    if (p.some(v => v === null)) { toast('⚠️ Corrigez le prix en rouge'); return; }
+    const v = r.vl ? p : p[0];
+    prix[k] = same(v, r.base) ? null : v;
+  }
+  const b = $('#saveGo'); b.disabled = true; b.textContent = 'Enregistrement…';
+  const ok = await ecrire({ prix });
+  b.disabled = false; b.textContent = 'Enregistrer';
+  if (ok) { const n = Object.keys(prix).length; EDIT = {}; drawCarte(); toast(`✅ ${n} prix enregistré${n > 1 ? 's' : ''} : le site est à jour`); }
+};
+addEventListener('beforeunload', e => { if (Object.keys(EDIT).length) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ================= rupture ================= */
+const FT = { viande: 'Viandes', sauces: 'Sauces', crudites: 'Crudités', boisson: 'Boissons', supp: 'Suppléments', formuleEnfant: 'Menu enfant', parfumGratin: 'Parfums des gratins' };
+function familles() {
+  const F = [];
+  const add = (f, titre, v) => { let x = F.find(y => y.f === f); if (!x) F.push(x = { f, titre, noms: [] }); if (!x.noms.includes(v)) x.noms.push(v); };
+  Object.entries(MENU.config.options || {}).forEach(([gid, g]) => g.choix.forEach(v => add(famille(gid), FT[famille(gid)] || g.titre, v)));
+  MENU.categories.forEach(c => (c.extras || []).forEach(e => add('supp', FT.supp, e.n)));
+  const ord = ['viande', 'sauces', 'crudites', 'boisson', 'supp'], rk = f => { const i = ord.indexOf(f); return i < 0 ? 99 : i; };
+  return F.sort((a, b) => rk(a.f) - rk(b.f));
+}
+function drawRupt() {
+  if (!MENU) { $('#rupt').innerHTML = noMenu(); return; }
+  const ru = REG ? REG.rupture : { plats: [], cats: [], choix: [] }, q = norm($('#qRupt').value.trim());
+  const nP = ru.plats.length + ru.cats.length, nI = ru.choix.length;
+  document.querySelectorAll('[data-r]').forEach(b => {
+    const n = b.dataset.r === 'plats' ? nP : nI;
+    b.classList.toggle('on', b.dataset.r === ruptTab);
+    b.innerHTML = (b.dataset.r === 'plats' ? 'Plats' : 'Ingrédients') + (n ? ` <span class="nb">${n}</span>` : '');
+  });
+  $('#ruptReset').hidden = !(nP + nI);
+  $('#ruptHelp').innerHTML = ruptTab === 'plats'
+    ? 'Touchez un plat pour le mettre <b>en rupture</b> (ou le remettre). Il reste visible sur le site avec la mention « épuisé » mais ne peut plus être commandé.'
+    : 'Touchez un ingrédient pour le mettre <b>en rupture</b>. Il n\'est plus proposé aux clients dans les choix (viande, sauce, boisson, supplément…). Un plat dont tous les choix obligatoires sont épuisés passe aussi en rupture.';
+  let html = '';
+  if (ruptTab === 'plats') {
+    MENU.categories.forEach(c => {
+      const cOut = ru.cats.includes(c.id);
+      const its = c.items.filter(it => !q || norm(it.n + ' ' + (it.d || '') + ' ' + c.name).includes(q));
+      if (!its.length) return;
+      html += `<div class="cat${cOut ? ' cout' : ''}"><h2><span>${esc(c.name)}</span><button class="catbtn${cOut ? ' out' : ''}" data-t="cat" data-id="${esc(c.id)}" data-n="${esc(c.name)}">${cOut ? '⛔ Toute la catégorie en rupture · Remettre' : 'Mettre toute la catégorie en rupture'}</button></h2>
+      <div class="rgrid">${its.map(it => { const o = cOut || ru.plats.includes(it.id); return `<button class="rb${o ? ' out' : ''}" data-t="plat" data-id="${esc(it.id)}" data-n="${esc(it.n)}"${cOut ? ' disabled' : ''}><b>${esc(it.n)}</b><span>${o ? '⛔ RUPTURE' : '● DISPONIBLE'}</span></button>`; }).join('')}</div></div>`;
+    });
+  } else {
+    familles().forEach(F => {
+      const noms = F.noms.filter(v => !q || norm(v + ' ' + F.titre).includes(q));
+      if (!noms.length) return;
+      html += `<div class="cat"><h2>${esc(F.titre)}</h2><div class="rgrid">${noms.map(v => { const k = F.f + ':' + v, o = ru.choix.includes(k); return `<button class="rb${o ? ' out' : ''}" data-t="choix" data-id="${esc(k)}" data-n="${esc(v)}"><b>${esc(v)}</b><span>${o ? '⛔ RUPTURE' : '● DISPONIBLE'}</span></button>`; }).join('')}</div></div>`;
+    });
+  }
+  $('#rupt').innerHTML = html || '<p class="empty">Rien ne correspond.</p>';
+}
+document.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { ruptTab = b.dataset.r; drawRupt(); });
+$('#qRupt').addEventListener('input', drawRupt);
+$('#rupt').onclick = async e => {
+  const b = e.target.closest('[data-t]'); if (!b || b.disabled) return;
+  if (!REG) { toast('Connexion en cours… réessayez'); return; }
+  const t = b.dataset.t, id = b.dataset.id, nom = b.dataset.n, k = { plat: 'plats', cat: 'cats', choix: 'choix' }[t];
+  const on = !REG.rupture[k].includes(id);
+  if (t === 'cat' && on && !confirm(`Mettre toute la catégorie « ${nom} » en rupture ?`)) return;
+  const prev = clone(REG);
+  REG.rupture[k] = on ? [...REG.rupture[k], id] : REG.rupture[k].filter(x => x !== id);
+  drawRupt(); drawCtl();
+  if (await ecrire({ rupture: { type: t, ids: [id], on } }, prev)) toast(on ? `⛔ ${nom} : en rupture` : `✅ ${nom} : de nouveau disponible`);
+};
+$('#ruptReset').onclick = async () => {
+  if (!REG || !confirm('Tout remettre en stock ? Tous les plats et ingrédients redeviennent disponibles.')) return;
+  const prev = clone(REG); REG.rupture = { plats: [], cats: [], choix: [] }; drawRupt(); drawCtl();
+  if (await ecrire({ rupture: { vider: true } }, prev)) toast('✅ Tout est de nouveau disponible');
+};
+
+/* ================= entrée ================= */
+let wake = null;
+async function keepAwake() { try { if (navigator.wakeLock && !document.hidden) wake = await navigator.wakeLock.request('screen'); } catch (e) {} }
+document.addEventListener('visibilitychange', () => { if (!document.hidden && !$('#gate')) { keepAwake(); load(); } });
 async function go() {
   CODE = $('#code').value.trim() || CODE;
   try { const r = await fetch(API, { headers: H() }); if (r.status === 401) { $('#gerr').textContent = 'Code incorrect.'; return; } if (r.ok) localStorage.setItem('cf_code', CODE); } catch (e) {}
-  $('#gate').remove(); beep(); try { navigator.wakeLock && navigator.wakeLock.request('screen'); } catch (e) {}
+  $('#gate').remove();
+  try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); ctx.resume && ctx.resume(); } catch (e) {}
+  beep(); keepAwake(); drawCtl(); swInit(); loadMenu();
   load(); setInterval(load, 4000);
 }
-$('#enter').onclick = go; if (CODE) $('#code').value = CODE;
+$('#enter').onclick = go; $('#code').addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+if (CODE) $('#code').value = CODE;
+drawCtl();
 </script>
 </body>
 </html>

@@ -1,0 +1,2163 @@
+{
+  "config": {
+    "_aide": "Horaires, délais (minutes), paiements, livraison et listes de sauces / boissons.",
+    "horaires": {
+      "plages": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "00:00"
+        ]
+      ]
+    },
+    "delaiRetrait": 20,
+    "delaiLivraison": 45,
+    "livraison": {
+      "actif": true,
+      "frais": 5,
+      "minimum": 0,
+      "zones": [
+        {
+          "cp": "62480",
+          "ville": "Le Portel"
+        }
+      ],
+      "gratuiteDes": 20
+    },
+    "paiements": [
+      "Espèces",
+      "Carte bancaire",
+      "Ticket restaurant"
+    ],
+    "options": {
+      "crudites": {
+        "titre": "Crudités",
+        "type": "multi",
+        "max": 3,
+        "defaut": [
+          "Salade",
+          "Tomate",
+          "Oignons"
+        ],
+        "vide": "aucune",
+        "aide": "décochez ce que vous ne voulez pas",
+        "choix": [
+          "Salade",
+          "Tomate",
+          "Oignons"
+        ]
+      },
+      "sauces": {
+        "titre": "Sauces",
+        "type": "multi",
+        "max": 2,
+        "choix": [
+          "Blanche",
+          "Algérienne",
+          "Samouraï",
+          "Harissa",
+          "Andalouse",
+          "Biggy",
+          "Barbecue",
+          "Ketchup",
+          "Mayonnaise",
+          "Curry",
+          "Poivre",
+          "Chili thaï",
+          "Moutarde",
+          "Fromagère"
+        ]
+      },
+      "boisson": {
+        "titre": "Boisson du menu",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Coca-Cola",
+          "Coca-Cola Zéro",
+          "Fanta Orange",
+          "Sprite",
+          "Oasis Tropical",
+          "Ice Tea Pêche",
+          "Orangina",
+          "Eau plate"
+        ]
+      },
+      "boissonMenu": {
+        "titre": "Boisson (si en menu)",
+        "type": "single",
+        "aide": "à choisir si vous prenez le menu",
+        "choix": [
+          "Coca-Cola",
+          "Coca-Cola Zéro",
+          "Fanta Orange",
+          "Sprite",
+          "Oasis Tropical",
+          "Ice Tea Pêche",
+          "Orangina",
+          "Eau plate"
+        ]
+      },
+      "boisson33": {
+        "titre": "Boisson",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Coca-Cola",
+          "Coca-Cola Zéro",
+          "Fanta Orange",
+          "Sprite",
+          "Oasis Tropical",
+          "Ice Tea Pêche",
+          "Orangina",
+          "Eau plate"
+        ]
+      },
+      "boisson15": {
+        "titre": "Boisson",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Coca-Cola",
+          "Coca-Cola Zéro",
+          "Fanta Orange",
+          "Sprite",
+          "Oasis Tropical",
+          "Ice Tea Pêche"
+        ]
+      },
+      "formuleEnfant": {
+        "titre": "Formule",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Cheese burger",
+          "5 nuggets"
+        ]
+      },
+      "boissonSupp": {
+        "titre": "Ajouter une boisson 33 cl",
+        "type": "single",
+        "prix": 2,
+        "choix": [
+          "Coca-Cola",
+          "Coca-Cola Zéro",
+          "Fanta Orange",
+          "Sprite",
+          "Oasis Tropical",
+          "Ice Tea Pêche",
+          "Orangina",
+          "Eau plate"
+        ]
+      },
+      "viande1": {
+        "titre": "Viande",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Kebab",
+          "Chicken curry",
+          "Chicken tandoori",
+          "Cordon bleu",
+          "Tenders",
+          "Poulet",
+          "Merguez",
+          "Poulet pané",
+          "Kefta"
+        ]
+      },
+      "viande2": {
+        "titre": "Viandes",
+        "type": "multi",
+        "max": 2,
+        "min": 2,
+        "requis": true,
+        "aide": "choisissez 2 viandes",
+        "choix": [
+          "Kebab",
+          "Chicken curry",
+          "Chicken tandoori",
+          "Cordon bleu",
+          "Tenders",
+          "Poulet",
+          "Merguez",
+          "Poulet pané",
+          "Kefta"
+        ]
+      },
+      "viande3": {
+        "titre": "Viandes",
+        "type": "multi",
+        "max": 3,
+        "min": 3,
+        "requis": true,
+        "aide": "choisissez 3 viandes",
+        "choix": [
+          "Kebab",
+          "Chicken curry",
+          "Chicken tandoori",
+          "Cordon bleu",
+          "Tenders",
+          "Poulet",
+          "Merguez",
+          "Poulet pané",
+          "Kefta"
+        ]
+      },
+      "viandeCrousty": {
+        "titre": "Viande",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Tenders",
+          "Chicken curry",
+          "Chicken tandoori",
+          "Cordon bleu",
+          "Nuggets"
+        ]
+      },
+      "parfumGratin": {
+        "titre": "Parfum",
+        "type": "single",
+        "requis": true,
+        "choix": [
+          "Kebab",
+          "4 fromages",
+          "Curry",
+          "Tandoori",
+          "Saumon",
+          "Merguez",
+          "Tenders",
+          "Cordon bleu"
+        ]
+      }
+    }
+  },
+  "categories": [
+    {
+      "id": "sandwichs",
+      "banner": "cat-sandwichs",
+      "name": "Sandwichs",
+      "desc": "Servis avec frites et boisson en menu.",
+      "precision": "Sans oignon, bien cuit…",
+      "options": [
+        "crudites",
+        "sauces",
+        "boisson"
+      ],
+      "items": [
+        {
+          "id": "sandwichs-1",
+          "n": "Kebab",
+          "d": "Viande de kebab.",
+          "p": 8
+        },
+        {
+          "id": "sandwichs-2",
+          "n": "Curry",
+          "d": "Poulet curry, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "sandwichs-3",
+          "n": "Tandoori",
+          "d": "Poulet tandoori, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "sandwichs-4",
+          "n": "Escalope",
+          "d": "Escalope nature, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "sandwichs-5",
+          "n": "Farmer",
+          "d": "Escalope, cordon bleu, boursin, cheddar.",
+          "p": 9.5
+        },
+        {
+          "id": "sandwichs-6",
+          "n": "M2",
+          "d": "2 steaks 45 g, cheddar.",
+          "p": 7.5
+        },
+        {
+          "id": "sandwichs-7",
+          "n": "Triple X",
+          "d": "3 steaks 45 g, bacon, œuf, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "sandwichs-8",
+          "n": "Capital 62",
+          "d": "5 steaks 45 g, jambon, œuf, cheddar.",
+          "p": 9.9
+        },
+        {
+          "id": "sandwichs-9",
+          "n": "Extra",
+          "d": "2 steaks, galette de pomme de terre, œuf, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "sandwichs-10",
+          "n": "Kefta",
+          "d": "Kefta, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "sandwichs-11",
+          "n": "Chef",
+          "d": "Escalope, champignons, crème fraîche, cheddar.",
+          "p": 9.4
+        },
+        {
+          "id": "sandwichs-12",
+          "n": "Pep's",
+          "d": "Escalope, lardons, Vache qui rit, emmental.",
+          "p": 9.9
+        },
+        {
+          "id": "sandwichs-13",
+          "n": "Costa Rica",
+          "d": "Kebab, kefta, boursin, cheddar.",
+          "p": 9.4
+        },
+        {
+          "id": "sandwichs-14",
+          "n": "Mix Boursin",
+          "d": "Steak, escalope, boursin, cheddar.",
+          "p": 9.4
+        },
+        {
+          "id": "sandwichs-15",
+          "n": "Super Mix",
+          "d": "2 viandes au choix, cheddar.",
+          "p": 9.9,
+          "options": [
+            "viande2",
+            "crudites",
+            "sauces",
+            "boisson"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheese-naan",
+      "banner": "cat-cheese-naan",
+      "name": "Cheese Naan",
+      "desc": "Pain naan au fromage. Servis avec frites et boisson.",
+      "options": [
+        "crudites",
+        "sauces",
+        "boisson"
+      ],
+      "items": [
+        {
+          "id": "cheese-naan-1",
+          "n": "Chicken Naan",
+          "d": "Tenders, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "cheese-naan-2",
+          "n": "Mixte Bacon Naan",
+          "d": "2 steaks 45 g, tenders, bacon, cheddar.",
+          "p": 9.5
+        },
+        {
+          "id": "cheese-naan-3",
+          "n": "Radical Naan",
+          "d": "1 steak 45 g, cordon bleu, cheddar.",
+          "p": 9.5
+        },
+        {
+          "id": "cheese-naan-4",
+          "n": "Crust Naan",
+          "d": "Tenders, galette de pomme de terre, œuf, cheddar.",
+          "p": 9.9
+        },
+        {
+          "id": "cheese-naan-5",
+          "n": "Capital Naan",
+          "d": "5 steaks 45 g, œuf, jambon, cheddar.",
+          "p": 10.9
+        },
+        {
+          "id": "cheese-naan-6",
+          "n": "Merguez Naan",
+          "d": "3 merguez, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "cheese-naan-7",
+          "n": "Mexicain Naan",
+          "d": "Kefta, merguez, tenders, cheddar.",
+          "p": 10.9
+        },
+        {
+          "id": "cheese-naan-8",
+          "n": "Spider Naan",
+          "d": "Escalope, lardons, Vache qui rit, cheddar.",
+          "p": 9.9
+        },
+        {
+          "id": "cheese-naan-9",
+          "n": "Végi Naan",
+          "d": "Galette de pomme de terre, œuf, champignons, cheddar.",
+          "p": 8.9
+        },
+        {
+          "id": "cheese-naan-10",
+          "n": "Top Naan",
+          "d": "2 viandes au choix, cheddar.",
+          "p": 10.4,
+          "options": [
+            "viande2",
+            "crudites",
+            "sauces",
+            "boisson"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burger-naan",
+      "banner": "cat-burger-naan",
+      "name": "Burgers Naan",
+      "desc": "Burgers maison dans un pain naan. Servis avec frites et boisson.",
+      "options": [
+        "crudites",
+        "sauces",
+        "boisson"
+      ],
+      "items": [
+        {
+          "id": "burger-naan-1",
+          "n": "Naan Tower",
+          "d": "Tenders, galette de pomme de terre, cheddar.",
+          "p": 12.9
+        },
+        {
+          "id": "burger-naan-2",
+          "n": "Naan Bacon",
+          "d": "2 steaks maison 150 g, bacon, œuf, cheddar.",
+          "p": 13.9
+        },
+        {
+          "id": "burger-naan-3",
+          "n": "Naan Crousty",
+          "d": "1 steak maison 150 g, galette de pomme de terre, cheddar.",
+          "p": 12.4
+        },
+        {
+          "id": "burger-naan-4",
+          "n": "Naan Géant",
+          "d": "1 steak maison 150 g, galette de pomme de terre, tenders, cheddar.",
+          "p": 14.4
+        },
+        {
+          "id": "burger-naan-5",
+          "n": "Naan Triple",
+          "d": "3 steaks maison 150 g, cheddar.",
+          "p": 15.4,
+          "options": [
+            "crudites",
+            "sauces",
+            "boisson"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burgers-maison",
+      "banner": "cat-burgers-maison",
+      "name": "Burgers maison",
+      "desc": "Steak de bœuf 150 g fait maison. Servis avec frites et boisson.",
+      "options": [
+        "crudites",
+        "sauces",
+        "boisson"
+      ],
+      "items": [
+        {
+          "id": "burgers-maison-1",
+          "n": "Classic Bœuf",
+          "d": "1 steak de bœuf 150 g maison, sauce maison, cheddar.",
+          "p": 10.9
+        },
+        {
+          "id": "burgers-maison-2",
+          "n": "Double Cheese",
+          "d": "2 steaks de bœuf 150 g maison, sauce maison, cheddar.",
+          "p": 13.5
+        },
+        {
+          "id": "burgers-maison-3",
+          "n": "Chicken",
+          "d": "Chicken pané maison.",
+          "p": 11.9
+        },
+        {
+          "id": "burgers-maison-4",
+          "n": "Chèvre",
+          "d": "1 steak 150 g maison, sauce moutarde, chèvre et miel.",
+          "p": 11.9
+        },
+        {
+          "id": "burgers-maison-5",
+          "n": "Farmer",
+          "d": "1 steak 150 g maison, sauce barbecue, galette de pomme de terre, poulet pané, œuf, cheddar.",
+          "p": 12.9
+        },
+        {
+          "id": "burgers-maison-6",
+          "n": "Bacon",
+          "d": "1 steak 150 g maison, sauce poivre, oignons confits, bacon, cheddar.",
+          "p": 12.9
+        },
+        {
+          "id": "burgers-maison-7",
+          "n": "Street Burger",
+          "d": "1 steak 150 g maison, cheddar, sauce américaine, poulet fumé, raclette, galette de pomme de terre, champignons.",
+          "p": 12.9
+        },
+        {
+          "id": "burgers-maison-8",
+          "n": "Avocado",
+          "d": "1 steak 150 g maison, sauce maison, avocat, cheddar.",
+          "p": 13.5
+        }
+      ]
+    },
+    {
+      "id": "burgers",
+      "banner": "cat-burgers",
+      "name": "Burgers classiques",
+      "desc": "Servis avec frites et boisson.",
+      "options": [
+        "crudites",
+        "sauces",
+        "boisson"
+      ],
+      "items": [
+        {
+          "id": "burgers-1",
+          "n": "Cheese",
+          "d": "1 steak 45 g, cheddar.",
+          "p": 5.5
+        },
+        {
+          "id": "burgers-2",
+          "n": "Double",
+          "d": "2 steaks 45 g, cheddar.",
+          "p": 6.5
+        },
+        {
+          "id": "burgers-3",
+          "n": "Triple",
+          "d": "3 steaks 45 g, cheddar.",
+          "p": 7.5
+        },
+        {
+          "id": "burgers-4",
+          "n": "Chicken",
+          "d": "Poulet pané, cheddar.",
+          "p": 6.5
+        },
+        {
+          "id": "burgers-5",
+          "n": "Fish",
+          "d": "Poisson pané, cheddar.",
+          "p": 6.5
+        },
+        {
+          "id": "burgers-6",
+          "n": "Big M",
+          "d": "2 steaks 45 g, cheddar.",
+          "p": 8.5
+        },
+        {
+          "id": "burgers-7",
+          "n": "Rosti",
+          "d": "1 steak 45 g, galette de pomme de terre, cheddar.",
+          "p": 7
+        },
+        {
+          "id": "burgers-8",
+          "n": "Big Chef",
+          "d": "1 steak 150 g, galette de pomme de terre, œuf, cheddar.",
+          "p": 12.5
+        },
+        {
+          "id": "burgers-9",
+          "n": "Beef",
+          "d": "1 steak 45 g, poulet pané, cheddar.",
+          "p": 7.5
+        },
+        {
+          "id": "burgers-10",
+          "n": "Méga",
+          "d": "1 steak 180 g, cheddar.",
+          "p": 9.5
+        },
+        {
+          "id": "burgers-11",
+          "n": "Double 180",
+          "d": "2 steaks 180 g, cheddar.",
+          "p": 11.5
+        },
+        {
+          "id": "burgers-12",
+          "n": "Triple 180",
+          "d": "3 steaks 180 g, cheddar.",
+          "p": 12.5
+        }
+      ]
+    },
+    {
+      "id": "duo",
+      "banner": "cat-duo",
+      "name": "Menus Duo",
+      "desc": "Deux burgers, servis avec frites et boisson.",
+      "options": [
+        "crudites",
+        "sauces",
+        "boisson"
+      ],
+      "items": [
+        {
+          "id": "duo-1",
+          "n": "Duo 1",
+          "d": "2 Cheese burgers.",
+          "p": 8
+        },
+        {
+          "id": "duo-2",
+          "n": "Duo 2",
+          "d": "Cheese burger + Double cheese.",
+          "p": 8.5
+        },
+        {
+          "id": "duo-3",
+          "n": "Duo 3",
+          "d": "Cheese burger + Big M.",
+          "p": 9
+        },
+        {
+          "id": "duo-4",
+          "n": "Duo 4",
+          "d": "Cheese burger + Beef.",
+          "p": 10.5
+        },
+        {
+          "id": "duo-5",
+          "n": "Duo 5",
+          "d": "Triple cheese + 3 tenders.",
+          "p": 10.5
+        },
+        {
+          "id": "duo-6",
+          "n": "Duo 6",
+          "d": "Chicken burger + Big M + 3 tenders.",
+          "p": 11.5
+        },
+        {
+          "id": "duo-7",
+          "n": "Duo 7",
+          "d": "2 Big M.",
+          "p": 9
+        },
+        {
+          "id": "duo-8",
+          "n": "Duo 8",
+          "d": "Chicken burger + Big M.",
+          "p": 10.5
+        }
+      ]
+    },
+    {
+      "id": "tacos",
+      "banner": "cat-tacos",
+      "name": "Tacos",
+      "desc": "Viande(s) au choix. « En menu » : avec frites et boisson.",
+      "precision": "Viande(s) au choix",
+      "options": [
+        "sauces",
+        "boissonMenu"
+      ],
+      "items": [
+        {
+          "id": "tacos-1",
+          "n": "Tacos 1 viande",
+          "d": "1 viande au choix.",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 9
+            },
+            {
+              "l": "En menu",
+              "p": 10
+            }
+          ],
+          "options": [
+            "viande1",
+            "sauces",
+            "boissonMenu"
+          ]
+        },
+        {
+          "id": "tacos-2",
+          "n": "Tacos 2 viandes",
+          "d": "2 viandes au choix.",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 10
+            },
+            {
+              "l": "En menu",
+              "p": 11
+            }
+          ],
+          "options": [
+            "viande2",
+            "sauces",
+            "boissonMenu"
+          ]
+        },
+        {
+          "id": "tacos-3",
+          "n": "Tacos 3 viandes",
+          "d": "3 viandes au choix.",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 11
+            },
+            {
+              "l": "En menu",
+              "p": 12
+            }
+          ],
+          "options": [
+            "viande3",
+            "sauces",
+            "boissonMenu"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "id": "gratine",
+          "n": "Gratiné (chèvre miel, cheddar, raclette ou mozza)",
+          "p": 1
+        },
+        {
+          "id": "s1",
+          "n": "Bacon",
+          "p": 2
+        },
+        {
+          "id": "s2",
+          "n": "Jambon",
+          "p": 2
+        },
+        {
+          "id": "s3",
+          "n": "Chorizo",
+          "p": 2
+        },
+        {
+          "id": "s4",
+          "n": "Lardons",
+          "p": 2
+        },
+        {
+          "id": "s5",
+          "n": "Galette de pomme de terre",
+          "p": 2
+        },
+        {
+          "id": "t1",
+          "n": "Chèvre miel",
+          "p": 1.5
+        },
+        {
+          "id": "t2",
+          "n": "Boursin",
+          "p": 1.5
+        },
+        {
+          "id": "t3",
+          "n": "Mozzarella",
+          "p": 1.5
+        },
+        {
+          "id": "t4",
+          "n": "Cheddar",
+          "p": 1.5
+        },
+        {
+          "id": "t5",
+          "n": "Emmental",
+          "p": 1.5
+        },
+        {
+          "id": "t6",
+          "n": "Œuf",
+          "p": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bowls",
+      "banner": "cat-bowls",
+      "name": "Bowl's",
+      "desc": "Frites et viande(s) au choix.",
+      "precision": "Viande(s) au choix",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "bowls-1",
+          "n": "Bowl's 1 viande",
+          "d": "Frites, 1 viande au choix.",
+          "p": 9,
+          "options": [
+            "viande1",
+            "sauces"
+          ]
+        },
+        {
+          "id": "bowls-2",
+          "n": "Bowl's 2 viandes",
+          "d": "Frites, 2 viandes au choix.",
+          "p": 10,
+          "options": [
+            "viande2",
+            "sauces"
+          ]
+        },
+        {
+          "id": "bowls-3",
+          "n": "Bowl's 3 viandes",
+          "d": "Frites, 3 viandes au choix.",
+          "p": 11,
+          "options": [
+            "viande3",
+            "sauces"
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "id": "s1",
+          "n": "Bacon",
+          "p": 2
+        },
+        {
+          "id": "s2",
+          "n": "Jambon",
+          "p": 2
+        },
+        {
+          "id": "s3",
+          "n": "Chorizo",
+          "p": 2
+        },
+        {
+          "id": "s4",
+          "n": "Lardons",
+          "p": 2
+        },
+        {
+          "id": "s5",
+          "n": "Galette de pomme de terre",
+          "p": 2
+        },
+        {
+          "id": "t1",
+          "n": "Chèvre miel",
+          "p": 1.5
+        },
+        {
+          "id": "t2",
+          "n": "Boursin",
+          "p": 1.5
+        },
+        {
+          "id": "t3",
+          "n": "Mozzarella",
+          "p": 1.5
+        },
+        {
+          "id": "t4",
+          "n": "Cheddar",
+          "p": 1.5
+        },
+        {
+          "id": "t5",
+          "n": "Emmental",
+          "p": 1.5
+        },
+        {
+          "id": "t6",
+          "n": "Œuf",
+          "p": 1.5
+        }
+      ]
+    },
+    {
+      "id": "paninis",
+      "banner": "cat-paninis",
+      "name": "Paninis, Croques & Hummers",
+      "desc": "Seul, ou en menu avec frites et boisson.",
+      "precision": "Sans oignon, bien cuit…",
+      "options": [
+        "sauces",
+        "boissonMenu"
+      ],
+      "items": [
+        {
+          "id": "paninis-1",
+          "n": "Panini Kebab",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-2",
+          "n": "Panini Poulet",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-3",
+          "n": "Panini Viande hachée",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-4",
+          "n": "Panini 4 fromages",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-5",
+          "n": "Panini Jambon",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-6",
+          "n": "Panini Thon",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-7",
+          "n": "Panini Merguez",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-8",
+          "n": "Panini Mixte",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-9",
+          "n": "Panini Nutella",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 6.5
+            },
+            {
+              "l": "En menu",
+              "p": 7.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-10",
+          "n": "Croque Monsieur",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 4.5
+            },
+            {
+              "l": "En menu",
+              "p": 6.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-11",
+          "n": "Croque Madame",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 4.5
+            },
+            {
+              "l": "En menu",
+              "p": 6.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-12",
+          "n": "Croque Boursin",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 4.5
+            },
+            {
+              "l": "En menu",
+              "p": 6.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-13",
+          "n": "Croque Chèvre miel",
+          "d": "",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 4.5
+            },
+            {
+              "l": "En menu",
+              "p": 6.5
+            }
+          ]
+        },
+        {
+          "id": "paninis-14",
+          "n": "Hummer H2",
+          "d": "2 steaks 45 g, cheddar.",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 7
+            },
+            {
+              "l": "En menu",
+              "p": 8
+            }
+          ]
+        },
+        {
+          "id": "paninis-15",
+          "n": "Hummer H3",
+          "d": "3 steaks 45 g, cheddar.",
+          "p": [
+            {
+              "l": "Seul",
+              "p": 8
+            },
+            {
+              "l": "En menu",
+              "p": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizzas-tomate",
+      "banner": "cat-pizzas-tomate",
+      "name": "Pizzas base tomate",
+      "desc": "Junior 8,50 € · Senior 12,90 € · Méga 17,90 €",
+      "precision": "Sans olives, bien cuite…",
+      "items": [
+        {
+          "id": "pizzas-tomate-1",
+          "n": "Margarita",
+          "d": "Sauce tomate, mozzarella, origan.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-2",
+          "n": "Regina",
+          "d": "Mozzarella, jambon, champignons, olives.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ],
+          "options": [
+            "boissonSupp"
+          ]
+        },
+        {
+          "id": "pizzas-tomate-3",
+          "n": "Campione",
+          "d": "Mozzarella, viande hachée, champignons, œuf.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-4",
+          "n": "4 Fromages",
+          "d": "Mozzarella, chèvre, reblochon, fromage bleu.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-5",
+          "n": "Chicken",
+          "d": "Mozzarella, poulet, oignons, olives.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-6",
+          "n": "Thon",
+          "d": "Mozzarella, thon, oignons, œuf, olives.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-7",
+          "n": "Boursin",
+          "d": "Mozzarella, viande hachée, boursin, olives.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-8",
+          "n": "Orientale",
+          "d": "Mozzarella, merguez, poivrons, olives, œuf.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-9",
+          "n": "Mixte",
+          "d": "Mozzarella, poulet, viande hachée, œuf.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-10",
+          "n": "Végétarienne",
+          "d": "Mozzarella, tomate fraîche, champignons, oignons, olives.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-tomate-11",
+          "n": "Kebab",
+          "d": "Mozzarella, kebab, pomme de terre, oignons.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizzas-creme",
+      "banner": "cat-pizzas-creme",
+      "name": "Pizzas base crème",
+      "desc": "Junior 8,50 € · Senior 12,90 € · Méga 17,90 €",
+      "precision": "Sans olives, bien cuite…",
+      "items": [
+        {
+          "id": "pizzas-creme-1",
+          "n": "Savoyarde",
+          "d": "Base crème, mozzarella, poulet, viande hachée.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-creme-2",
+          "n": "Paysanne",
+          "d": "Base crème, mozzarella, jambon, pomme de terre, oignons.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-creme-3",
+          "n": "Tartiflette",
+          "d": "Base crème, mozzarella, lardons, reblochon, pomme de terre, oignons, œuf.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-creme-4",
+          "n": "Chèvre Miel",
+          "d": "Base crème, mozzarella, chèvre, miel.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-creme-5",
+          "n": "Norvégienne",
+          "d": "Base crème, mozzarella, saumon.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-creme-6",
+          "n": "Fruits de mer",
+          "d": "Base crème, mozzarella, cocktail de fruits de mer.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        },
+        {
+          "id": "pizzas-creme-7",
+          "n": "Raclette",
+          "d": "Base crème, mozzarella, lardons, pomme de terre, fromage à raclette.",
+          "p": [
+            {
+              "l": "Junior",
+              "p": 8.5
+            },
+            {
+              "l": "Senior",
+              "p": 12.9
+            },
+            {
+              "l": "Méga",
+              "p": 17.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "panizza",
+      "banner": "cat-panizza",
+      "name": "Panizza",
+      "precision": "Base et viande au choix",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "panizza-1",
+          "n": "Panizza",
+          "d": "Base tomate ou crème fraîche, viande, mozzarella.",
+          "p": 9.9,
+          "options": [
+            "viande1",
+            "sauces"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calzone",
+      "banner": "cat-calzone",
+      "name": "Calzone",
+      "precision": "Base et viande au choix",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "calzone-1",
+          "n": "Calzone",
+          "d": "Sauce tomate ou crème fraîche, mozzarella, viande au choix, œuf.",
+          "p": 9.9,
+          "options": [
+            "viande1",
+            "sauces"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assiettes",
+      "banner": "cat-assiettes",
+      "name": "Assiettes",
+      "precision": "Viande au choix",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "assiettes-1",
+          "n": "Assiette 1 viande",
+          "d": "Avec frites et salade.",
+          "p": 11,
+          "options": [
+            "viande1",
+            "sauces"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baguettes",
+      "banner": "cat-baguettes",
+      "name": "Baguettes gratinées",
+      "items": [
+        {
+          "id": "baguettes-1",
+          "n": "RS1",
+          "d": "Escalope, lardons, boursin.",
+          "p": 8.5
+        },
+        {
+          "id": "baguettes-2",
+          "n": "RS2",
+          "d": "Tandoori, curry, crème fraîche, emmental.",
+          "p": 9.5
+        },
+        {
+          "id": "baguettes-3",
+          "n": "RS3",
+          "d": "Escalope, lardons, Vache qui rit, emmental.",
+          "p": 10.5
+        },
+        {
+          "id": "baguettes-4",
+          "n": "RS4",
+          "d": "Chicken curry, lardons, emmental, sauce gruyère.",
+          "p": 11
+        },
+        {
+          "id": "baguettes-5",
+          "n": "RS5",
+          "d": "Kefta, escalope, lardons, raclette, emmental, sauce gruyère.",
+          "p": 11.5
+        },
+        {
+          "id": "baguettes-6",
+          "n": "RS6",
+          "d": "Escalope, lardons, pomme de terre, sauce gruyère, chèvre miel.",
+          "p": 12
+        }
+      ]
+    },
+    {
+      "id": "gratins",
+      "banner": "cat-gratins",
+      "name": "Gratins",
+      "precision": "Parfum au choix",
+      "items": [
+        {
+          "id": "gratins-1",
+          "n": "Gratin",
+          "d": "Kebab, 4 fromages, curry, tandoori, saumon, merguez, tenders ou cordon bleu.",
+          "p": [
+            {
+              "l": "Petit",
+              "p": 7.9
+            },
+            {
+              "l": "Grand",
+              "p": 9.9
+            }
+          ],
+          "options": [
+            "parfumGratin"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maakloub",
+      "banner": "cat-maakloub",
+      "name": "Maakloub tunisien",
+      "precision": "Viande au choix",
+      "options": [
+        "crudites",
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "maakloub-1",
+          "n": "Maakloub tunisien",
+          "d": "Viande au choix.",
+          "p": 9.9,
+          "options": [
+            "viande1",
+            "crudites",
+            "sauces"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pates",
+      "banner": "cat-pates",
+      "name": "Pâtes",
+      "items": [
+        {
+          "id": "pates-1",
+          "n": "Bolognaise",
+          "d": "",
+          "p": 9.9
+        },
+        {
+          "id": "pates-2",
+          "n": "4 Fromages",
+          "d": "",
+          "p": 9.9
+        },
+        {
+          "id": "pates-3",
+          "n": "Carbonara",
+          "d": "",
+          "p": 9.9,
+          "options": [
+            "boissonSupp"
+          ]
+        },
+        {
+          "id": "pates-4",
+          "n": "Forestière",
+          "d": "",
+          "p": 9.9
+        },
+        {
+          "id": "pates-5",
+          "n": "Saumon",
+          "d": "",
+          "p": 9.9
+        },
+        {
+          "id": "pates-6",
+          "n": "Indienne",
+          "d": "",
+          "p": 9.9
+        }
+      ]
+    },
+    {
+      "id": "brasserie",
+      "banner": "cat-brasserie",
+      "name": "Nos brasseries",
+      "desc": "Une sauce au choix : poivre ou normande.",
+      "precision": "Cuisson, sauce poivre ou normande…",
+      "items": [
+        {
+          "id": "brasserie-1",
+          "n": "Entrecôte de bœuf",
+          "d": "",
+          "p": 13.9
+        },
+        {
+          "id": "brasserie-2",
+          "n": "Steak à cheval",
+          "d": "1 steak 180 g, œuf.",
+          "p": 12.9
+        },
+        {
+          "id": "brasserie-3",
+          "n": "Saltimbocca",
+          "d": "Escalope de poulet, sauce champignons, jambon, fromage gratiné.",
+          "p": 14.9
+        },
+        {
+          "id": "brasserie-4",
+          "n": "Brochettes de poulet",
+          "d": "2 brochettes de poulet.",
+          "p": 13.9
+        },
+        {
+          "id": "brasserie-5",
+          "n": "Escalope forestière",
+          "d": "Escalope de poulet, sauce champignons.",
+          "p": 13.9
+        }
+      ]
+    },
+    {
+      "id": "buckets",
+      "banner": "cat-buckets",
+      "name": "Wings, Tenders & Buckets",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "buckets-1",
+          "n": "Wings",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 9.4
+            },
+            {
+              "l": "x10",
+              "p": 12.4
+            }
+          ]
+        },
+        {
+          "id": "buckets-2",
+          "n": "Tenders",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 9.4
+            },
+            {
+              "l": "x10",
+              "p": 12.4
+            }
+          ]
+        },
+        {
+          "id": "buckets-3",
+          "n": "Little Mixte",
+          "d": "4 wings + 4 tenders.",
+          "p": 11.5
+        },
+        {
+          "id": "buckets-4",
+          "n": "XL Wings",
+          "d": "30 wings.",
+          "p": 29
+        },
+        {
+          "id": "buckets-5",
+          "n": "XL Tenders",
+          "d": "20 tenders.",
+          "p": 29
+        },
+        {
+          "id": "buckets-6",
+          "n": "XL Mixte",
+          "d": "20 wings + 10 tenders.",
+          "p": 29
+        }
+      ]
+    },
+    {
+      "id": "crousty",
+      "banner": "cat-crousty",
+      "name": "Capital Crousty",
+      "precision": "Viande au choix",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "crousty-1",
+          "n": "Capital Crousty",
+          "d": "Riz, sauce maison, sauce sucrée, oignons crispy, persil. Viande au choix : tenders, chicken curry, chicken tandoori, cordon bleu ou nuggets.",
+          "p": 9.5,
+          "options": [
+            "viandeCrousty",
+            "sauces"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "snacks",
+      "banner": "cat-snacks",
+      "name": "Tex-Mex",
+      "options": [
+        "sauces"
+      ],
+      "items": [
+        {
+          "id": "snacks-1",
+          "n": "Calamars frits",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 4.5
+            },
+            {
+              "l": "x10",
+              "p": 9
+            }
+          ]
+        },
+        {
+          "id": "snacks-2",
+          "n": "Oignons rings",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 4.5
+            },
+            {
+              "l": "x10",
+              "p": 9
+            }
+          ]
+        },
+        {
+          "id": "snacks-3",
+          "n": "Chili cheese",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 4.5
+            },
+            {
+              "l": "x10",
+              "p": 9
+            }
+          ]
+        },
+        {
+          "id": "snacks-4",
+          "n": "Nuggets",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 4.5
+            },
+            {
+              "l": "x10",
+              "p": 9
+            }
+          ]
+        },
+        {
+          "id": "snacks-5",
+          "n": "Mozza sticks",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 4.5
+            },
+            {
+              "l": "x10",
+              "p": 9
+            }
+          ]
+        },
+        {
+          "id": "snacks-6",
+          "n": "Bouchées camembert",
+          "d": "",
+          "p": [
+            {
+              "l": "x5",
+              "p": 4.5
+            },
+            {
+              "l": "x10",
+              "p": 9
+            }
+          ]
+        },
+        {
+          "id": "snacks-7",
+          "n": "Donuts",
+          "d": "",
+          "p": [
+            {
+              "l": "x1",
+              "p": 3
+            },
+            {
+              "l": "x3",
+              "p": 8
+            }
+          ]
+        },
+        {
+          "id": "snacks-8",
+          "n": "Cordon bleu",
+          "d": "",
+          "p": [
+            {
+              "l": "x1",
+              "p": 3
+            },
+            {
+              "l": "x3",
+              "p": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salades",
+      "banner": "cat-salades",
+      "name": "Salades",
+      "items": [
+        {
+          "id": "salades-1",
+          "n": "César",
+          "d": "Salade verte, tomates cerises, tenders maison, croûtons à l'ail.",
+          "p": 6.9
+        },
+        {
+          "id": "salades-2",
+          "n": "Niçoise",
+          "d": "Salade verte, tomates cerises, thon, maïs, œuf.",
+          "p": 6.9
+        },
+        {
+          "id": "salades-3",
+          "n": "Océane",
+          "d": "Salade verte, tomates cerises, saumon, pomme de terre, croûtons à l'ail.",
+          "p": 6.9
+        }
+      ]
+    },
+    {
+      "id": "enfant",
+      "banner": "cat-enfant",
+      "name": "Menu enfant",
+      "options": [
+        "formuleEnfant"
+      ],
+      "items": [
+        {
+          "id": "enfant-1",
+          "n": "Menu enfant",
+          "d": "5 nuggets + frites + Capri-Sun, ou cheese burger + frites + Capri-Sun.",
+          "p": 7
+        }
+      ]
+    },
+    {
+      "id": "crepes",
+      "banner": "cat-crepes",
+      "name": "Crêpes sucrées",
+      "items": [
+        {
+          "id": "crepes-1",
+          "n": "Crêpe sucre",
+          "d": "",
+          "p": 3
+        },
+        {
+          "id": "crepes-2",
+          "n": "Crêpe Nutella",
+          "d": "",
+          "p": 4.5
+        },
+        {
+          "id": "crepes-3",
+          "n": "Crêpe Nutella banane",
+          "d": "",
+          "p": 5
+        },
+        {
+          "id": "crepes-4",
+          "n": "Crêpe Nutella Snickers",
+          "d": "",
+          "p": 5
+        },
+        {
+          "id": "crepes-5",
+          "n": "Crêpe Nutella M&M's",
+          "d": "",
+          "p": 5
+        },
+        {
+          "id": "crepes-6",
+          "n": "Crêpe Nutella Speculoos",
+          "d": "",
+          "p": 5
+        },
+        {
+          "id": "crepes-7",
+          "n": "Crêpe Nutella Kinder Bueno",
+          "d": "",
+          "p": 5
+        },
+        {
+          "id": "crepes-8",
+          "n": "Crêpe Nutella Oreo",
+          "d": "",
+          "p": 5
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "banner": "cat-desserts",
+      "name": "Desserts",
+      "items": [
+        {
+          "id": "desserts-1",
+          "n": "Gaufre",
+          "d": "",
+          "p": 5
+        },
+        {
+          "id": "desserts-2",
+          "n": "Tiramisu",
+          "d": "",
+          "p": 3.5
+        },
+        {
+          "id": "desserts-3",
+          "n": "Tarte au Daim",
+          "d": "",
+          "p": 3
+        },
+        {
+          "id": "desserts-4",
+          "n": "Café",
+          "d": "",
+          "p": 1.5
+        }
+      ]
+    },
+    {
+      "id": "smoothies",
+      "banner": "cat-smoothies",
+      "name": "Smoothies & Milkshakes",
+      "precision": "Parfum ou fruit au choix",
+      "items": [
+        {
+          "id": "smoothies-1",
+          "n": "Milkshake",
+          "d": "Vanille, chocolat ou fraise. Extra topping +1,50 €.",
+          "p": 5
+        },
+        {
+          "id": "smoothies-2",
+          "n": "Smoothie",
+          "d": "Fruits au choix.",
+          "p": 5
+        }
+      ],
+      "extras": [
+        {
+          "id": "topping",
+          "n": "Extra topping (milkshake)",
+          "p": 1.5,
+          "pour": [
+            "smoothies-1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boissons",
+      "banner": "cat-boissons",
+      "name": "Boissons",
+      "items": [
+        {
+          "id": "boissons-1",
+          "n": "Boisson 33 cl",
+          "d": "",
+          "p": 2,
+          "options": [
+            "boisson33"
+          ]
+        },
+        {
+          "id": "boissons-2",
+          "n": "Red Bull",
+          "d": "",
+          "p": 3
+        },
+        {
+          "id": "boissons-3",
+          "n": "Boisson 1,5 L",
+          "d": "",
+          "p": 3.5,
+          "options": [
+            "boisson15"
+          ]
+        }
+      ]
+    }
+  ]
+}
